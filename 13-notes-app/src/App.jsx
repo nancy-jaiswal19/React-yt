@@ -1,14 +1,35 @@
-import React from 'react'
+import { useState } from 'react'
 
 const App = () => {
 
-  const submitHandler = (e)=>{
+  const [title, setTitle] = useState('')
+  const [details, setDetails] = useState('')
+
+  const [task, setTask] = useState([])
+
+  const submitHandler = (e) => {
     e.preventDefault()
-    console.log("form Submitted");
-    
+
+    const copyTask = [...task];
+
+    copyTask.push({ title, details })
+
+    setTask(copyTask)
+
+    setTitle('')
+    setDetails('')
   }
 
-   return (
+
+  const deleteNote = (idx) => {
+    const copyTask = [...task];
+
+    copyTask.splice(idx, 1)
+
+    setTask(copyTask)
+  }
+
+  return (
     <div className='h-screen lg:flex bg-black text-white'>
 
       <form onSubmit={(e) => {
