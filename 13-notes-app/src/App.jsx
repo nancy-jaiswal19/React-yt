@@ -39,6 +39,11 @@ const App = () => {
     setTask(copyTask)
   }
 
+  const clearAll = () => {
+    setTask([])
+    localStorage.removeItem('notes')
+  }
+
   return (
     <div className='h-screen lg:flex bg-black text-white'>
 
@@ -78,7 +83,10 @@ const App = () => {
 
       </form>
       <div className='lg:w-1/2 lg:border-l-2  p-10'>
-        <h1 className='text-4xl font-bold'>Recent Notes</h1>
+        <div className='flex justify-between'>
+          <h1 className='text-4xl font-bold'>Recent Notes</h1>
+        <button onClick={clearAll} className='p-3 px-4 bg-gray-600 rounded-2xl font-medium'>Clear</button>
+        </div>
         <div className='flex flex-wrap items-start justify-start gap-5 mt-6 h-[90%] overflow-auto'>
           {task.map(function (elem, idx) {
 
